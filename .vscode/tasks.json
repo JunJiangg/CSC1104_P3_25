@@ -2,58 +2,6 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "C: Build project (UCRT64, SDL3)",
-			"type": "shell",
-			"command": "shopt -s globstar; /c/msys64/ucrt64/bin/gcc.exe -std=c11 -Wall -Wextra -IC:/msys64/ucrt64/include -LC:/msys64/ucrt64/lib src/main/**/*.c -lSDL3 -lSDL3_ttf -lSDL3_image -lm -o main.exe",
-			"args": [],
-			"options": {
-				"cwd": "${workspaceFolder}",
-				"shell": {
-					"executable": "C:/msys64/usr/bin/bash.exe",
-					"args": ["-c"]
-				}
-			},
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"problemMatcher": [
-				"$gcc"
-			]
-		},
-		{
-			"label": "Build Modular SDL3 (bash)",
-			"type": "shell",
-			"command": "/c/msys64/ucrt64/bin/gcc.exe",
-			"args": [
-				"-std=c11",
-				"-Wall",
-				"-Wextra",
-				"-IC:/msys64/ucrt64/include",
-				"-LC:/msys64/ucrt64/lib",
-				"src/main/c/main.c",
-				"src/main/ui/button.c",
-				"src/main/ui/render.c",
-				"src/main/core/game.c",
-				"src/main/ai/minimax.c",
-				"-lSDL3",
-				"-lSDL3_ttf",
-				"-lSDL3_image",
-				"-lm",
-				"-o",
-				"tictactoe_mod.exe"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}",
-				"shell": {
-					"executable": "C:/msys64/usr/bin/bash.exe",
-					"args": ["-c"]
-				}
-			},
-			"problemMatcher": ["$gcc"],
-			"group": "build"
-		},
-		{
       "label": "C: Build normal (no libraries)",
       "type": "shell",
       "command": "gcc -std=c11 -Wall -Wextra -O2 \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}.exe\"",

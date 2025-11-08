@@ -11,9 +11,6 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src",
                 "C:/msys64/ucrt64/include",
-                "C:/msys64/ucrt64/include/SDL3",
-                "C:/msys64/ucrt64/include/SDL3_image",
-                "C:/msys64/ucrt64/include/SDL3_ttf",
                 "C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include",
                 "C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include-fixed"
             ],
