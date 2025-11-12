@@ -1,3 +1,6 @@
+// Define feature test macros before any includes for POSIX clock functions
+#define _POSIX_C_SOURCE 199309L
+
 #include <limits.h>
 #ifndef PATH_MAX
 #define PATH_MAX 4096
@@ -10,7 +13,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <zip.h>
-#include <time.h>  // For timing measurements
+#include <time.h>  // For timing measurements (clock, clock_gettime)
 
 // Buffer size for reading file data during compression
 #define BUF_SZ 2048
