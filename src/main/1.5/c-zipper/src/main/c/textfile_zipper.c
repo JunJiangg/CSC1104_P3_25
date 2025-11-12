@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <zip.h>
+#include <time.h>  // For timing measurements
 
 // Buffer size for reading file data during compression
 #define BUF_SZ 2048
@@ -45,6 +46,15 @@ static int has_txt_extension_ci(const char *name) {
  *   8. Print summary statistics
  */
 int main(void) {
+    // Start timing
+    clock_t start_time = clock();
+    struct timespec start_real;
+    clock_gettime(CLOCK_MONOTONIC, &start_real);
+    
+    printf("==============================================\n");
+    printf("    C Text File Zipper - Performance Test\n");
+    printf("==============================================\n\n");
+    
     // STEP 1: Get Current Working Directory
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
@@ -129,7 +139,29 @@ int main(void) {
     // Close and finalize the ZIP archive
     closedir(dir);
     zip_close(za);    
+    
+    // End timing
+    clock_t end_time = clock();
+    struct timespec end_real;
+    clock_gettime(CLOCK_MONOTONIC, &end_real);
+    
+    // Calculate elapsed times
+    double cpu_time = ((double)(end_time - start_time)) / CLOCKS_PER_SEC * 1000.0;  // in milliseconds
+    double real_time = (end_real.tv_sec - start_real.tv_sec) * 1000.0 + 
+                       (end_real.tv_nsec - start_real.tv_nsec) / 1000000.0;  // in milliseconds
+    
     // Print summary information
-    printf("There are %d .txt files and compressed into %s\n", count, zip_name);
+    printf("\n==============================================\n");
+    printf("             RESULTS SUMMARY\n");
+    printf("==============================================\n");
+    printf("Files processed: %d .txt files\n", count);
+    printf("Output archive:  %s\n", zip_name);
+    printf("\n--- Performance Metrics ---\n");
+    printf("CPU Time:        %.3f ms\n", cpu_time);
+    printf("Real Time:       %.3f ms\n", real_time);
+    printf("Language:        C\n");
+    printf("Compiler:        GCC with -O2 optimization\n");
+    printf("==============================================\n");
+    
     return 0;
 }

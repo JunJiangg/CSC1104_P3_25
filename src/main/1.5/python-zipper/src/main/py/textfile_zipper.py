@@ -1,7 +1,10 @@
 from pathlib import Path
 import zipfile
+import time  # For timing measurements
 
 
+    #Helper function to find last dot, reject names with no extension
+    #check if extension is a file text case-insensitive
 def is_text_file(path: Path) -> bool:
     """Check if a file has .txt extension (case-insensitive)."""
     return path.is_file() and path.suffix.lower() == ".txt"
@@ -20,6 +23,14 @@ def directory_builder(base_dir: Path, type: str) -> Path:
 
 def main() -> None:
     """Main function: Find all .txt files and compress them into a ZIP archive."""
+    # Start timing
+    start_time = time.time()
+    start_process_time = time.process_time()
+    
+    print("==============================================")
+    print("  Python Text File Zipper - Performance Test")
+    print("==============================================\n")
+    
     # Get the base directory (navigate up from script location)
     base_dir = Path(__file__).resolve().parent.parent
 
@@ -42,8 +53,26 @@ def main() -> None:
         for p in txt_files:
             zf.write(p, arcname=p.name)
 
+    # End timing
+    end_time = time.time()
+    end_process_time = time.process_time()
+    
+    # Calculate elapsed times
+    real_time = (end_time - start_time) * 1000  # Convert to milliseconds
+    cpu_time = (end_process_time - start_process_time) * 1000  # Convert to milliseconds
+    
     # Print summary
-    print(f"There are number of {count} .txt files and compressed into a .zip file")
+    print("\n==============================================")
+    print("             RESULTS SUMMARY")
+    print("==============================================")
+    print(f"Files processed: {count} .txt files")
+    print(f"Output archive:  text_file.zip")
+    print(f"\n--- Performance Metrics ---")
+    print(f"CPU Time:        {cpu_time:.3f} ms")
+    print(f"Real Time:       {real_time:.3f} ms")
+    print(f"Language:        Python")
+    print(f"Interpreter:     Python {__import__('sys').version.split()[0]}")
+    print("==============================================")
 
 
 if __name__ == "__main__":
