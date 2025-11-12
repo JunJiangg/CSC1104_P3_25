@@ -9,7 +9,7 @@
             "env": {
                 "MSYSTEM": "UCRT64",
                 "CHERE_INVOKING": "1",
-                "MSYS2_PATH_TYPE": "inherit"
+                "MSYS2_PATH_TYPE": "strict"
             },
             "icon": "terminal-bash"
         },
@@ -22,7 +22,7 @@
             "env": {
                 "MSYSTEM": "MINGW64",
                 "CHERE_INVOKING": "1",
-                "MSYS2_PATH_TYPE": "inherit"
+                "MSYS2_PATH_TYPE": "strict"
             },
             "icon": "terminal-bash"
         }
@@ -34,6 +34,15 @@
         "C:/msys64/ucrt64/include/**"
     ],
     "files.associations": {
-        "sdl.h": "c"
+        "*.s": "asm",
+        "*.S": "asm",
+        "sdl.h": "c",
+        "stdbool.h": "c",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "string_view": "cpp",
+        "flat_map": "cpp",
+        "flat_set": "cpp"
     }
 }
